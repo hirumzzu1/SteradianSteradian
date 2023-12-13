@@ -1,0 +1,6 @@
+root@mnc-cdnetwork-klaklik-stg-01:~/SteradianSteradian/kubernetes/apache# kubectl apply -f apache-pod.yaml
+pod/apache created
+root@mnc-cdnetwork-klaklik-stg-01:~/SteradianSteradian/kubernetes/apache# kubectl get po
+NAME     READY   STATUS    RESTARTS   AGE
+nginx    1/1     Running   0          3m15s
+apache   1/1     Running   0          47s

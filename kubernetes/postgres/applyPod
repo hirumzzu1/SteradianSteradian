@@ -1,0 +1,7 @@
+root@mnc-cdnetwork-klaklik-stg-01:~/SteradianSteradian/kubernetes/postgres# kubectl apply -f postgress-pod.yaml
+pod/postgres created
+root@mnc-cdnetwork-klaklik-stg-01:~/SteradianSteradian/kubernetes/postgres# kubectl get pod
+NAME       READY   STATUS    RESTARTS   AGE
+nginx      1/1     Running   0          12m
+apache     1/1     Running   0          10m
+postgres   1/1     Running   0          38s

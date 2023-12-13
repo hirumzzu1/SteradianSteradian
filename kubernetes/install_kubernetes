@@ -1,0 +1,23 @@
+- sudo apt-get update
+- sudo apt-get install docker.io
+- docker --version
+- sudo systemctl status docker
+- curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+- sudo apt-add-repository "deb http://apt.kubernetes.io/ kubernetes-xenial main"
+- sudo apt-get install kubeadm kubelet kubectl atau apt install -y kubeadm=1.25.5-00 kubelet=1.25.5-00 kubectl=1.25.5-00
+- sudo apt-mark hold kubeadm kubelet kubectl
+- sudo swapoff --a
+- sudo kubeadm init --pod-network-cidr=192.168.10.0/16 --apiserver-advertise-address=192.168.10.142
+- mkdir -p $HOME/.kube
+- sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+- sudo chown $(id -u):$(id -g) $HOME/.kube/config
+- di server ke dua jalankan join command yang terprint setelah kubadm init di server pertama
+- kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.24.5/manifests/tigera-operator.yaml
+- kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.24.5/manifests/custom-resources.yaml
+- kubectl create -f https://projectcalico.docs.tigera.io/manifests/canal.yaml 
+- tunggu samapi semua pod coredns running
+root@mnc-cdnetwork-klaklik-stg-01:~# kubectl get no
+NAME     STATUS   ROLES           AGE   VERSION
+stg-01   Ready    control-plane   72s   v1.28.3
+stg-02   Ready    <none>          72s   v1.28.3
+
