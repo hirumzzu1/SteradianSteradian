@@ -1,0 +1,39 @@
+root@stg-01:~/SteradianSteradian/apache# nano docker-compose.yml
+root@stg-01:~/SteradianSteradian/apache# ls /var/www/html/
+2020-08-31.csv 
+root@stg-01:~/SteradianSteradian/apache# docker-compose up -d
+Creating network "apache_default" with the default driver
+Pulling php-apache (php:apache)...
+apache: Pulling from library/php
+1f7ce2fa46ab: Already exists
+48824c101c6a: Pull complete
+249ff3a7bbe6: Pull complete
+aa5d47f22b64: Pull complete
+851cb5d3b62c: Pull complete
+090f07e09d3e: Pull complete
+74f97600920f: Pull complete
+178f568dd275: Pull complete
+03e19778b7d1: Pull complete
+cddd61eeb8fc: Pull complete
+ce973172b522: Pull complete
+4bd5a598f046: Pull complete
+fb894cb2a933: Pull complete
+Digest: sha256:0497b44a7619b7b88662097760c404d4f3fe810f74a9febe09fced71072212c0
+Status: Downloaded newer image for php:apache
+Creating apache_php-apache_1 ... done
+root@stg-01:~/SteradianSteradian/apache# docker container exec -it apache_php-apache_1
+apache_php-apache_1   postgress_postgres_1
+root@stg-01:~/SteradianSteradian/apache# docker container exec -it apache_php-apache_1 bash
+root@a555a4c078ce:/var/www/html# ls
+2020-08-31.csv
+root@stg-01:~/SteradianSteradian/apache# curl localhost:8080
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<html><head>
+<title>403 Forbidden</title>
+</head><body>
+<h1>Forbidden</h1>
+<p>You don't have permission to access this resource.</p>
+<hr>
+<address>Apache/2.4.57 (Debian) Server at localhost Port 8080</address>
+</body></html>
+
