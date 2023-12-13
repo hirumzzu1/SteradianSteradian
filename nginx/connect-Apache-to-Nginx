@@ -1,0 +1,29 @@
+root@stg-01:~/SteradianSteradian/nginx# nano /etc/nginx/sites-enable/default.conf
+server {
+    listen 80;
+    server_name localhost;
+
+    location / {
+        proxy_pass http://localhost:8081;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}
+root@stg-01:~/SteradianSteradian/nginx# docker exec -it nginx_nginx_1 /bin/bash
+root@2d676bbe7c9d:/# nginx -t
+nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful
+root@2d676bbe7c9d:/# nginx -s reload
+root@2d676bbe7c9d:/# exit
+root@stg-01:~/SteradianSteradian/nginx# curl localhost
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<html><head>
+<title>403 Forbidden</title>
+</head><body>
+<h1>Forbidden</h1>
+<p>You don't have permission to access this resource.</p>
+<hr>
+<address>Apache/2.4.57 (Debian) Server at localhost Port 8080</address>
+</body></html>
