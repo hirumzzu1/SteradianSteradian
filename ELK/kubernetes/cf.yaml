@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: elk-config
+data:
+  .env: |
+    ELASTIC_PASSWORD=elasticpassword2022
+    KIBANA_PASSWORD=kibanapassword2022
+    STACK_VERSION=7.13.4
+    CLUSTER_NAME=elk-cluster
+    LICENSE=basic
+    ES_PORT=9200
+    KIBANA_PORT=5601
+    MEM_LIMIT=3221225472
