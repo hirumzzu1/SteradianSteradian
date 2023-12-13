@@ -1,0 +1,32 @@
+root@stg-01:~/SteradianSteradian/nginx# nano docker-compose.yml
+root@stg-01:~/SteradianSteradian/nginx# netstat -tulpn | grep 80
+tcp        0      0 0.0.0.0:8080            0.0.0.0:*               LISTEN      2169188/docker-prox
+tcp6       0      0 :::8080                 :::*                    LISTEN      2169251/docker-prox
+root@stg-01:~/SteradianSteradian/nginx# docker container ls
+CONTAINER ID   IMAGE        COMMAND                  CREATED          STATUS          PORTS                                   NAMES
+a555a4c078ce   php:apache   "docker-php-entrypoi…"   9 minutes ago    Up 9 minutes    0.0.0.0:8080->80/tcp, :::8080->80/tcp   apache_php-apache_1
+5c9a163fd62d   postgres     "docker-entrypoint.s…"   14 minutes ago   Up 14 minutes   5432/tcp                                postgress_postgres_1
+root@stg-01:~/SteradianSteradian/nginx# docker-compose up -d
+Creating network "nginx_default" with the default driver
+Pulling nginx (nginx:)...
+latest: Pulling from library/nginx
+1f7ce2fa46ab: Already exists
+9b16c94bb686: Pull complete
+9a59d19f9c5b: Pull complete
+9ea27b074f71: Pull complete
+c6edf33e2524: Pull complete
+84b1ff10387b: Pull complete
+517357831967: Pull complete
+Digest: sha256:10d1f5b58f74683ad34eb29287e07dab1e90f10af243f151bb50aa5dbb4d62ee
+Status: Downloaded newer image for nginx:latest
+Creating nginx_nginx_1 ... done
+root@stg-01:~/SteradianSteradian/nginx# docker container ls
+CONTAINER ID   IMAGE        COMMAND                  CREATED              STATUS              PORTS                                   NAMES
+2d676bbe7c9d   nginx        "/docker-entrypoint.…"   About a minute ago   Up About a minute   0.0.0.0:80->80/tcp, :::80->80/tcp       nginx_nginx_1
+a555a4c078ce   php:apache   "docker-php-entrypoi…"   13 minutes ago       Up 2 minutes        0.0.0.0:8080->80/tcp, :::8080->80/tcp   apache_php-apache_1
+5c9a163fd62d   postgres     "docker-entrypoint.s…"   19 minutes ago       Up 19 minutes       5432/tcp                                postgress_postgres_1
+root@stg-01:~/SteradianSteradian/nginx# netstat -tulpn | grep 80
+tcp        0      0 0.0.0.0:80              0.0.0.0:*               LISTEN      2214327/docker-prox
+tcp        0      0 0.0.0.0:8080            0.0.0.0:*               LISTEN      2212040/docker-prox
+tcp6       0      0 :::80                   :::*                    LISTEN      2214340/docker-prox
+tcp6       0      0 :::8080                 :::*                    LISTEN      2212053/docker-prox
