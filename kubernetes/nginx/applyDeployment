@@ -1,0 +1,45 @@
+root@mnc-cdnetwork-klaklik-stg-01:~/SteradianSteradian/kubernetes/nginx# kubectl apply -f nginx-deployment-service.yaml
+deployment.apps/steradian-nginx created
+service/steradian-nginx-service created
+root@mnc-cdnetwork-klaklik-stg-01:~/SteradianSteradian/kubernetes/nginx# kubectl get all
+NAME                                  READY   STATUS    RESTARTS   AGE
+pod/nginx                             1/1     Running   0          19m
+pod/apache                            1/1     Running   0          16m
+pod/postgres                          1/1     Running   0          7m4s
+pod/steradian-nginx-7ccfc8484-cqprx   1/1     Running   0          54s
+pod/steradian-nginx-7ccfc8484-727jv   1/1     Running   0          52s
+pod/steradian-nginx-7ccfc8484-8d55l   1/1     Running   0          51s
+
+NAME                              TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
+service/kubernetes                ClusterIP      10.152.183.1    <none>        443/TCP        33m
+service/steradian-nginx-service   LoadBalancer   10.152.183.55   172.31.0.8    80:31071/TCP   98s
+
+NAME                              READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/steradian-nginx   3/3     3            3           98s
+
+NAME                                         DESIRED   CURRENT   READY   AGE
+replicaset.apps/steradian-nginx-7ccfc8484    3         3         3       54s
+root@mnc-cdnetwork-klaklik-stg-01:~/SteradianSteradian/kubernetes/nginx# curl 172.31.0.8
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+html { color-scheme: light dark; }
+body { width: 35em; margin: 0 auto;
+font-family: Tahoma, Verdana, Arial, sans-serif; }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.</p>
+
+<p>For online documentation and support please refer to
+<a href="http://nginx.org/">nginx.org</a>.<br/>
+Commercial support is available at
+<a href="http://nginx.com/">nginx.com</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>

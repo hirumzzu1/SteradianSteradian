@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: steradian-nginx
+  labels:
+    name: steradian-nginx
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      name: steradian-nginx
+  template:
+    metadata:
+      name: steradian-nginx
+      labels:
+        name: steradian-nginx
+    spec:
+      containers:
+        - name: steradian-nginx
+          image: nginx
+          ports:
+            - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: steradian-nginx-service
+spec:
+  type: LoadBalancer
+  selector:
+    name: steradian-nginx
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  externalIPs:
+    - 172.31.0.8

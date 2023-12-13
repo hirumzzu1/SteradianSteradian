@@ -1,0 +1,5 @@
+root@mnc-cdnetwork-klaklik-stg-01:~/SteradianSteradian/kubernetes/nginx# kubectl apply -f nginx-pod.yaml
+pod/nginx created
+root@mnc-cdnetwork-klaklik-stg-01:~/SteradianSteradian/kubernetes/nginx# kubectl get po
+NAME    READY   STATUS    RESTARTS   AGE
+nginx   1/1     Running   0          35s
