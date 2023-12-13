@@ -1,0 +1,49 @@
+root@mnc-cdnetwork-klaklik-stg-01:~/SteradianSteradian/ELK/docker# docker-compose up -d
+Creating network "docker_default" with the default driver
+Creating volume "docker_certs" with local driver
+Creating volume "docker_esdata01" with local driver
+Creating volume "docker_esdata02" with local driver
+Creating volume "docker_kibanadata" with local driver
+Pulling setup (docker.elastic.co/elasticsearch/elasticsearch:7.13.4)...
+7.13.4: Pulling from elasticsearch/elasticsearch
+ddf49b9115d7: Pull complete
+67831602c5f6: Pull complete
+e9244a58c58a: Pull complete
+02513d648eec: Pull complete
+2a31f6c80f77: Pull complete
+9022d53d3571: Pull complete
+3fc2a72e96e7: Pull complete
+Digest: sha256:70e5f2454148f16385ffbc1b1fb71f3a171a8ef8665c8b482235656678b7df93
+Status: Downloaded newer image for docker.elastic.co/elasticsearch/elasticsearch:7.13.4
+Pulling kibana (docker.elastic.co/kibana/kibana:7.13.4)...
+7.13.4: Pulling from kibana/kibana
+ddf49b9115d7: Already exists
+fd01827972c3: Pull complete
+098f67b337ef: Pull complete
+bc1f0ec63813: Pull complete
+a76b52c17928: Pull complete
+ef4bb29b0d45: Pull complete
+d2ab1e210724: Pull complete
+9badf8bb30f1: Pull complete
+eb437cb269a2: Pull complete
+16f4dba791e1: Pull complete
+a3a1402e263e: Pull complete
+3e2f943b174f: Pull complete
+6615eea08e89: Pull complete
+Digest: sha256:17d0ec16b8fc31efcc2dff66549d3da13cded0c9be66d240d19f2515f611bf7a
+Status: Downloaded newer image for docker.elastic.co/kibana/kibana:7.13.4
+Creating docker_setup_1 ... done
+Creating docker_es01_1  ... done
+Creating docker_es02_1  ... done
+Creating docker_kibana_1 ... done
+root@mnc-cdnetwork-klaklik-stg-01:~/SteradianSteradian/ELK/docker# docker-compose ps
+     Name                    Command                  State                             Ports
+--------------------------------------------------------------------------------------------------------------------
+docker_es01_1     /bin/tini -- /usr/local/bi ...   Up (healthy)   0.0.0.0:9200->9200/tcp,:::9200->9200/tcp, 9300/tcp
+docker_es02_1     /bin/tini -- /usr/local/bi ...   Up (healthy)   9200/tcp, 9300/tcp
+docker_kibana_1   /bin/tini -- /usr/local/bi ...   Up (healthy)   0.0.0.0:5601->5601/tcp,:::5601->5601/tcp
+docker_setup_1    /bin/tini -- /usr/local/bi ...   Exit 0
+
+
+buka localhost:5601 
+login dengan elastic:elasticsteradian
