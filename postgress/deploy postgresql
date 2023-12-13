@@ -1,4 +1,0 @@
-create and deploy docker-compose
-nano docker-compose-postgres.yml
-docker volume create postgres_data
-docker-compose up -d

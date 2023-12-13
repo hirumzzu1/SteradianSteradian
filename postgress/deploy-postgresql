@@ -1,0 +1,33 @@
+- create and deploy docker-compose
+
+root@stg-01:~/SteradianSteradian/postgress# nano docker-compose.yml
+root@stg-01:~/SteradianSteradian/postgress# docker volume create postgres_data
+postgres_data
+root@stg-01:~/SteradianSteradian/postgress# docker volume ls
+DRIVER    VOLUME NAME
+local     postgres_data
+local     rabbitmq_rabbitmq_data
+root@stg-01:~/SteradianSteradian/postgress# docker-compose up -d
+Creating network "postgress_default" with the default driver
+Creating volume "postgress_postgres_data" with default driver
+Pulling postgres (postgres:)...
+latest: Pulling from library/postgres
+1f7ce2fa46ab: Pull complete
+8a0c088137b8: Pull complete
+11be68f68a2e: Pull complete
+19f13c4e1d96: Pull complete
+43187fdc5ebc: Pull complete
+a84cb0803492: Pull complete
+b50a897e2632: Pull complete
+7bc6d5552c52: Pull complete
+c8161286a3f1: Pull complete
+e36f0ab546af: Pull complete
+c2a71678092b: Pull complete
+7c23bdcac538: Pull complete
+16648961c661: Pull complete
+Digest: sha256:a2282ad0db623c27f03bab803975c9e3942a24e974f07142d5d69b6b8eaaf9e2
+Status: Downloaded newer image for postgres:latest
+Creating postgress_postgres_1 ... done
+root@stg-01:~/SteradianSteradian/postgress# docker container ls
+CONTAINER ID   IMAGE      COMMAND                  CREATED          STATUS          PORTS      NAMES
+5c9a163fd62d   postgres   "docker-entrypoint.s…"   41 seconds ago   Up 39 seconds   5432/tcp   postgress_postgres_1
