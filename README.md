@@ -1,1 +1,1 @@
-# SteradianSteradian
+# Steradian challenge 
