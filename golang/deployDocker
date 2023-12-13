@@ -1,0 +1,46 @@
+root@stg-01:~/SteradianSteradian/golang# go mod init example.com/m
+go: creating new go.mod: module example.com/m
+go: to add module requirements and sums:
+        go mod tidy
+root@stg-01:~/SteradianSteradian/golang# go mod tidy
+root@stg-01:~/SteradianSteradian/golang# nano main.go
+root@stg-01:~/SteradianSteradian/golang# nano Dockerfile
+root@stg-01:~/SteradianSteradian/golang# nano docker-compose.yml
+root@stg-01:~/SteradianSteradian/golang# curl localhost:9001/healthcheck
+curl: (7) Failed to connect to localhost port 9001 after 0 ms: Connection refused
+root@stg-01:~/SteradianSteradian/golang# docker-compose up -d
+Building golang-example
+DEPRECATED: The legacy builder is deprecated and will be removed in a future release.
+            Install the buildx component to build images with BuildKit:
+            https://docs.docker.com/go/buildx/
+
+Sending build context to Docker daemon  7.168kB
+Step 1/5 : FROM golang:1.17
+1.17: Pulling from library/golang
+Digest: sha256:87262e4a4c7db56158a80a18fefdc4fee5accc41b59cde821e691d05541bbb18
+Status: Downloaded newer image for golang:1.17
+ ---> 742df529b073
+Step 2/5 : WORKDIR /app
+ ---> Using cache
+ ---> 2af43949c3ca
+Step 3/5 : COPY . .
+ ---> 6075844c8234
+Step 4/5 : RUN go build -o main .
+ ---> Running in 19b760852d4d
+Removing intermediate container 19b760852d4d
+ ---> bd9df19ded20
+Step 5/5 : CMD ["./main"]
+ ---> Running in 9286b0b06c15
+Removing intermediate container 9286b0b06c15
+ ---> b2458abdaefb
+Successfully built b2458abdaefb
+Successfully tagged golang_golang-example:latest
+WARNING: Image for service golang-example was built because it did not already exist. To rebuild this image you must use `docker-compose build` or `docker-compose up --build`.
+Creating golang_golang-example_1 ... done
+9091/healthcheck
+{"status": "ok"}root@stg-01:~/SteradianSteradian/golang# docker container ls
+CONTAINER ID   IMAGE                   COMMAND                  CREATED              STATUS              PORTS                                       NAMES
+1abb8069abc3   golang_golang-example   "./main"                 About a minute ago   Up About a minute   0.0.0.0:9091->9091/tcp, :::9091->9091/tcp   golang_golang-example_1
+2d676bbe7c9d   nginx                   "/docker-entrypoint.…"   22 minutes ago       Up 22 minutes       0.0.0.0:80->80/tcp, :::80->80/tcp           nginx_nginx_1
+a555a4c078ce   php:apache              "docker-php-entrypoi…"   34 minutes ago       Up 22 minutes       0.0.0.0:8080->80/tcp, :::8080->80/tcp       apache_php-apache_1
+5c9a163fd62d   postgres                "docker-entrypoint.s…"   39 minutes ago       Up 39 minutes       5432/tcp                                    postgress_postgres_1
